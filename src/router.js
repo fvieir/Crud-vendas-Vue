@@ -3,14 +3,16 @@ import Router from "vue-router";
 import PageBegin from './Pages/PageBegin.vue'
 import PageQuery from './Pages/PageQuery.vue'
 import PageSales from './Pages/PageSales.vue'
+import PageClientAdd from './Pages/PageClientAdd.vue'
 
 Vue.use(Router)
 
 export default new Router ({
     mode: 'history',
     routes: [
-        {path: '/', component: PageBegin},
-        {path: '/sales', component: PageSales},
-        {path: '/queries', component: PageQuery}
+        {path: '/', component: PageBegin, name: 'home'},
+        {path: '/sales', component: PageSales, name: 'sales'},
+        {path: '/client/add', component: PageClientAdd, name: 'clients_add'},
+        {path: '/queries', component: PageQuery, name: 'queries'}
     ]
 })
