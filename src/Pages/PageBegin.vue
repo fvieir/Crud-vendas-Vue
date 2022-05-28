@@ -1,5 +1,5 @@
 <template>
-    <h1>Page Inicio</h1>
+    <button class="btn btn-success">teste</button>
 </template> 
 
 <script>
