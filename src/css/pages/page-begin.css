@@ -1,0 +1,11 @@
+.pageBegin .title {
+    color: #648094;
+    font-size: 40px;
+    font-weight: 400;
+}
+
+.text {
+    color: #404040;
+    font-size: 20px;
+    line-height: 1.6;
+}
