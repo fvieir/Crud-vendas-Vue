@@ -1,3 +1,5 @@
+import Vue from "vue"
+
 export default {
     state: {
         client: []
@@ -8,13 +10,28 @@ export default {
         }
     },
     actions: {
-        getClient ({ commit }, client) {
-            commit('setClient', client)
+        getClient ({ commit }) {
+            Vue.prototype.$http.get('/client')
+                .then(response => {
+                    const data = response.data
+                    if (data) {
+                        commit('setClient', data)
+                    } 
+                })
+                .catch(error => {
+                    return error
+                }) 
         },
-        postClient () {}
+        postClient (context, params = {}) {
+            console.log(context, params)
+            Vue.prototype.$http.post('/client', params)
+                .then(response => {
+                    console.log(response)
+                })
+        }
     },
     getters: {
-        client (state) {
+        clients (state) {
             return state.client
         }
     }

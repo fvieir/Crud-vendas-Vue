@@ -12,7 +12,7 @@ export default new Router ({
     routes: [
         {path: '/', component: PageBegin, name: 'home'},
         {path: '/sales', component: PageSales, name: 'sales'},
-        {path: '/client/add', component: PageClientAdd, name: 'clients_add'},
+        {path: '/register', component: PageClientAdd, name: 'register'},
         {path: '/queries', component: PageQuery, name: 'queries'}
     ]
 })
