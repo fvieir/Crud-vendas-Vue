@@ -23,10 +23,14 @@ export default {
                 }) 
         },
         postClient (context, params = {}) {
-            console.log(context, params)
             Vue.prototype.$http.post('/client', params)
                 .then(response => {
-                    console.log(response)
+                    if (response.data) {
+                        this.getClient()
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
                 })
         }
     },

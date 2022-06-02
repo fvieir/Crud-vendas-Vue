@@ -6,6 +6,9 @@
                 <button v-if="!addTel" @click="setClient()" class="btn btn-primary float-end">Cadastrar</button>
             </div>
             <div class="card-body">
+                <div v-if="loading" class="spinner-border text-primary" role="status">
+                    <span class="sr-only"></span>
+                </div>
                 <div v-if="addClient" class="pageClientAdd__form-client">
                     <form v-on:submit.prevent="createClient()" class="row g-3">
                         <div class="col-md-4">
@@ -118,7 +121,8 @@ export default {
                 cpf: '',
                 cnpj: '',
                 number: ''
-            }
+            },
+            loading: false
         }
     },
     computed: {
@@ -131,6 +135,7 @@ export default {
     },
     methods: {
         createClient() {
+            this.loading = true
             let postData = {}
             postData = {
                 name: this.clientAdd.name,
@@ -139,9 +144,17 @@ export default {
             }
             this.clientAdd.type === 'PF' ? postData.cpf = this.clientAdd.cpf : postData.cnpj = this.clientAdd.cnpj
             try {
-                this.postClient(postData)
+                const response = this.postClient(postData)
+                response.then(res => {
+                    if (res.errors) {
+                        this.errors = res.errors
+                    }
+                    this.loading = false
+                    this.addClient = false
+                })
             } catch (error) {
-                console
+                this.$swal('Server Error!', error, 'error');
+                this.loading = false
             }
         },
         setClient () {
